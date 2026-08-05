@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void simpleMM(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {
+void simpleMM(const vector<vector<int>>& mat1, const vector<vector<int>>& mat2) {
 
     vector<vector<int>> mat;
     int m = mat1.size(), k = mat2.size(), n = mat2[0].size();
@@ -21,17 +21,9 @@ void simpleMM(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {
         }
         mat.push_back(row);
     }
-
-    cout << "Result matrix:" << "\n";
-    for (auto& row : mat) {
-        for (int entry : row) {
-            cout << entry << " ";
-        }
-    cout << "\n";
-    }
 }
 
-void blockingMM(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {
+void blockingMM(const vector<vector<int>>& mat1, const vector<vector<int>>& mat2) {
     
     int m = mat1.size(), k = mat2.size(), n = mat2[0].size(), B = 64;
     vector<vector<int>> mat(m, (vector<int>(n, 0)));
@@ -53,11 +45,14 @@ void blockingMM(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {
             }
         }
     }
-    cout << "Result Matrix:" << "\n";
-    for (auto& row : mat) {
+}
+
+void printMatrix(const vector<vector<int>>& mat, ostream& os) {
+    os << "Result matrix:\n";
+    for (const auto& row : mat) {
         for (int entry : row) {
-            cout << entry << " ";
+            os << entry << " ";
         }
-    cout << "\n";
+        os << "\n";
     }
 }

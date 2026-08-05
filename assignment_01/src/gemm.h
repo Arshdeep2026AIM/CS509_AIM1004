@@ -5,7 +5,9 @@
 #include <vector>
 using namespace std;
 
-void simpleMM(vector<vector<int>>& mat11, vector<vector<int>>& mat2);
-void blockingMM(vector<vector<int>>& mat11, vector<vector<int>>& mat2);
+void simpleMM(const vector<vector<int>>& mat11, const vector<vector<int>>& mat2);
+void blockingMM(const vector<vector<int>>& mat11, const vector<vector<int>>& mat2);
+
+void printMatrix(const vector<vector<int>>& mat, ostream& os);
 
 #endif //GEMM_H
