@@ -19,7 +19,7 @@ CS509_<EntryNumber>/
 |-- README.md
 |-- common_wrapper/
 |   `-- wrapper.cpp
-|-- assignment_01_gemm/
+|-- assignment_01/
 |   |-- src/
 |   |   |-- mat.h
 |   |   |-- mat.cpp
@@ -34,6 +34,8 @@ CS509_<EntryNumber>/
 |       |-- output_01.txt
 |       |-- expected_01.txt
 |       `-- ...
+|-- assignment_02/
+.
 ```
 
 ## Common Wrapper: Build and Usage
@@ -104,3 +106,58 @@ Run the driver directly or through the common wrapper:
 ### Complexity
 * **GEMM Simple:** Time Complexity: $\mathcal{O}(M \cdot K \cdot N)$, Auxiliary Space: $\mathcal{O}(M \cdot N)$
 * **GEMM Blocking:** Time Complexity: $\mathcal{O}(M \cdot K \cdot N)$, Auxiliary Space: $\mathcal{O}(M \cdot N)$
+
+
+## Assignment 02: Shortest Path Algorithms (Bellman-Ford & Floyd-Warshall)
+
+### Assignment Mode
+Single (Individual)
+
+### Objective
+Implement single-source shortest path using Bellman-Ford (with CSR graph format) and all-pairs shortest path using Floyd-Warshall, including negative-weight cycle detection.
+
+### Algorithm / Approach
+1. **Bellman-Ford:** Operates on directed graphs converted to Compressed Sparse Row (CSR) format. Relaxes all edges $|V|-1$ times and performs an additional pass to check for negative-weight cycles.
+2. **Floyd-Warshall:** Operates on dense $V \times V$ adjacency matrices using dynamic programming. Computes shortest path distances for all pairs and checks diagonal entries $dist[i][i] < 0$ for negative cycles.
+
+### Input Format
+* **Bellman-Ford:** Weighted Adjacency List specifying $V$ and $E$, neighbor-weight pairs per vertex, and terminating with `SOURCE s`.
+* **Floyd-Warshall:** Adjacency matrix of size $V \times V$ with weight values or `INF` for absent edges ($0$ on diagonal).
+
+### Helper Functions / CSR Conversion
+Adjacency lists are converted to CSR arrays (`row_ptr`, `col_idx`, `values`) prior to timer start. The CSR conversion logic is reused from previous modules.
+
+### File Structure
+* `csr.h` / `csr.cpp`: Converts adjacency list representations to Compressed Sparse Row (CSR) format.
+* `bellman_ford.h` / `bellman_ford.cpp`: CSR-based Bellman-Ford implementation and negative-cycle detection.
+* `floyd_warshall.h` / `floyd_warshall.cpp`: Matrix-based Floyd-Warshall implementation.
+* `driver.cpp`: dedicated driver module that validates input files, builds data structures, invokes algorithms inside timing blocks, and formats output.
+
+### Compilation
+```bash
+g++ -O2 assignment_02_shortest_path/src/csr.cpp assignment_02_shortest_path/src/bellman_ford.cpp assignment_02_shortest_path/src/floyd_warshall.cpp assignment_02_shortest_path/driver/driver.cpp -o assignment_02_shortest_path/driver/driver
+```
+
+### Execution
+```bash
+./assignment_02_shortest_path/driver/driver
+```
+
+### Test Cases and Result Table
+
+| Algorithm | Test File | Vertices ($V$) | Edges ($E$) | Source | Negative Cycle | Expected Output | Actual Output | Time | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Bellman-Ford | `bf_10.txt` | 10 | | 0 | No | Distances | Distances | | PASSED |
+| Bellman-Ford | `bf_100.txt` | 100 | | 0 | No | Distances | Distances | | PASSED |
+| Bellman-Ford | `bf_10000.txt` | 10000 | | 0 | No | Distances | Distances | | PASSED |
+| Bellman-Ford | `bf_50000.txt` | 50000 | | 0 | No | Distances | Distances | | PASSED |
+| Bellman-Ford | `bf_100000.txt` | 100000 | | 0 | No | Distances | Distances | | PASSED |
+| Floyd-Warshall | `fw_10.txt` | 10 | | N/A | No | Distance Matrix | Distance Matrix | | PASSED |
+| Floyd-Warshall | `fw_100.txt` | 100 | | N/A | No | Distance Matrix | Distance Matrix | | PASSED |
+| Floyd-Warshall | `fw_500.txt` | 500 | | N/A | No | Distance Matrix | Distance Matrix | | PASSED |
+| Floyd-Warshall | `fw_1000.txt` | 1000 | | N/A | No | Distance Matrix | Distance Matrix | | PASSED |
+| Floyd-Warshall | `fw_2000.txt` | 2000 | | N/A | No | Distance Matrix | Distance Matrix | | PASSED |
+
+### Complexity
+* **Bellman-Ford:** Time Complexity: $\mathcal{O}(V \cdot E)$, Auxiliary Space: $\mathcal{O}(V + E)$
+* **Floyd-Warshall:** Time Complexity: $\mathcal{O}(V^3)$, Auxiliary Space: $\mathcal{O}(V^2)$
