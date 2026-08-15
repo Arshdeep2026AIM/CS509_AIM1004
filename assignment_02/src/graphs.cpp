@@ -12,25 +12,28 @@ bool bellmanFord(Csr& csr, vector<int>& distances) {
     distances[csr.csrGraph.sourceVertex] = 0;
 
     for (int iter = 0; iter < vertices - 1; iter++) {
-        for (int vertice = 0; vertice < vertices; vertices++) {
+        bool updated = false;
+        for (int vertice = 0; vertice < vertices; vertice++) {
             if (distances[vertice] == INF) continue;
 
-            int neighbors = csr.csrGraph.rowPtr[vertice + 1] - csr.csrGraph.rowPtr[vertice];
-            for (int i = csr.csrGraph.colIdx[vertice]; i < csr.csrGraph.colIdx[vertice] + neighbors; i++) {
+            for (int i = csr.csrGraph.rowPtr[vertice]; i < csr.csrGraph.rowPtr[vertice + 1]; i++) {
                 int neighbor = csr.csrGraph.colIdx[i];
                 int weight = csr.csrGraph.values[i];
                 
                 if (distances[vertice] + weight < distances[neighbor]) {
                     distances[neighbor] = distances[vertice] + weight;
+                    updated = true;
                 }
             }
         }
+        if (!updated) break;
     }
 
     
-    for (int vertice = 0; vertice < vertices; vertices++) {
+    for (int vertice = 0; vertice < vertices; vertice++) {
+        if (distances[vertice] == INF) continue;
         int neighbors = csr.csrGraph.rowPtr[vertice + 1] - csr.csrGraph.rowPtr[vertice];
-        for (int i = csr.csrGraph.colIdx[vertice]; i < csr.csrGraph.colIdx[vertice] + neighbors; i++) {
+        for (int i = csr.csrGraph.rowPtr[vertice]; i < csr.csrGraph.rowPtr[vertice] + neighbors; i++) {
             int neighbor = csr.csrGraph.colIdx[i];
             int weight = csr.csrGraph.values[i];
             
@@ -43,13 +46,13 @@ bool bellmanFord(Csr& csr, vector<int>& distances) {
     return false;
 }
 
-bool readFloydWarshall(string filePath, int& vertices, vector<vector<int>>& mat) {
+bool readFloydWarshall(string filePath, int& vertices, vector<vector<long long>>& mat) {
     ifstream file(filePath);
     if (!file.is_open()) return false;
     file >> vertices;
 
     for (int i = 0; i < vertices; i++) {
-        vector<int> row;
+        vector<long long> row;
         for (int j = 0; j < vertices; j++) {
             string val;
             file >> val;
@@ -62,7 +65,7 @@ bool readFloydWarshall(string filePath, int& vertices, vector<vector<int>>& mat)
     return true;
 }
 
-bool floydWarshall(vector<vector<int>>& dist, int numVertices) {
+bool floydWarshall(vector<vector<long long>>& dist, int numVertices) {
     for (int k = 0; k < numVertices; k++) {
         for (int i = 0; i < numVertices; i++) {
             for(int j = 0; j < numVertices; j++) {
