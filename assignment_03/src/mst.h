@@ -41,5 +41,8 @@ struct DSU {
     }
 };
 
+MST prim(Csr& csr);
+MST kruskal(Csr& csr);
+
 
 #endif // MST_H

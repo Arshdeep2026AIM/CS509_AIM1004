@@ -59,7 +59,7 @@ MST kruskal(Csr& csr) {
     sort(sortedEdges.begin(), sortedEdges.end());
 
     int totalWeight = 0, idx = 0;
-    while (idx < sortedEdges.size() && (int)mstEdges.size() < csr.csrGraph.numVertices - 1) {
+    while (idx < size && (int)mstEdges.size() < csr.csrGraph.numVertices - 1) {
         edge e = sortedEdges[idx];
 
         int weight = e.first;
@@ -75,24 +75,4 @@ MST kruskal(Csr& csr) {
     }
 
     return {mstEdges, totalWeight};
-}
-
-
-int main() {
-
-    Csr csr;
-    int w;
-    
-    csr.convert("mst_100000.txt", true);
-
-    MST mst = prim(csr);
-    cout << "\n" << mst.mstWeight << "\n";
-
-    csr.convert("mst_100000.txt", true);
-
-    MST mst2 = kruskal(csr);
-    cout << "\n" << mst2.mstWeight;
-
-
-    return 0;
 }
