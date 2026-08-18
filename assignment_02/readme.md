@@ -19,13 +19,12 @@ Adjacency lists are converted to CSR arrays (`row_ptr`, `col_idx`, `values`) pri
 
 ### File Structure
 * `csr.h` / `csr.cpp`: Converts adjacency list representations to Compressed Sparse Row (CSR) format.
-* `bellman_ford.h` / `bellman_ford.cpp`: CSR-based Bellman-Ford implementation and negative-cycle detection.
-* `floyd_warshall.h` / `floyd_warshall.cpp`: Matrix-based Floyd-Warshall implementation.
+* `graphs.h` / `graphs.cpp`: CSR-based Bellman-Ford implementation and negative-cycle detection and Matrix-based Floyd-Warshall implementation.
 * `driver.cpp`: dedicated driver module that validates input files, builds data structures, invokes algorithms inside timing blocks, and formats output.
 
 ### Compilation
 ```bash
-g++ -O2 ../../assignment_01/src/csr.cpp ../src/bellman_ford.cpp ../src/floyd_warshall.cpp ../driver/driver.cpp -o ../driver/driver
+g++ ../../assignment_01/src/csr.cpp ../src/graphs.cpp ../driver/driver.cpp -o ../driver/driver
 ```
 
 ### Execution
@@ -37,11 +36,11 @@ g++ -O2 ../../assignment_01/src/csr.cpp ../src/bellman_ford.cpp ../src/floyd_war
 
 | Algorithm | Test File | Vertices ($V$) | Edges ($E$) | Source | Negative Cycle | Expected Output | Actual Output | Time | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Bellman-Ford | `bf_10.txt` | 10 | | 0 | No | Distances | Distances | 0 ms | PASSED |
-| Bellman-Ford | `bf_100.txt` | 100 | | 0 | No | Distances | Distances | 0 ms | PASSED |
-| Bellman-Ford | `bf_10000.txt` | 10000 | | 0 | No | Distances | Distances | 17 ms | PASSED |
-| Bellman-Ford | `bf_50000.txt` | 50000 | | 0 | No | Distances | Distances | 67 ms | PASSED |
-| Bellman-Ford | `bf_100000.txt` | 100000 | | 0 | No | Distances | Distances | 107 ms | PASSED |
+| Bellman-Ford | `bf_10.txt` | 10 | 27 | 0 | No | Distances | Distances | 0 ms | PASSED |
+| Bellman-Ford | `bf_100.txt` | 100 | 295 | 0 | No | Distances | Distances | 0 ms | PASSED |
+| Bellman-Ford | `bf_10000.txt` | 10000 | 250950 | 0 | No | Distances | Distances | 17 ms | PASSED |
+| Bellman-Ford | `bf_50000.txt` | 50000 | 997909 | 0 | No | Distances | Distances | 67 ms | PASSED |
+| Bellman-Ford | `bf_100000.txt` | 100000 | 1500765 | 0 | No | Distances | Distances | 107 ms | PASSED |
 | Floyd-Warshall | `fw_10.txt` | 10 | | N/A | No | Distance Matrix | Distance Matrix | 0 ms | PASSED |
 | Floyd-Warshall | `fw_100.txt` | 100 | | N/A | No | Distance Matrix | Distance Matrix | 60 ms | PASSED |
 | Floyd-Warshall | `fw_500.txt` | 500 | | N/A | No | Distance Matrix | Distance Matrix | 6369 ms | PASSED |

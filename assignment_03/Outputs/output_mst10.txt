@@ -1,0 +1,25 @@
+Algorithm: Kruskal's MST
+MST Edges:
+4 5 12
+0 3 13
+3 7 19
+0 5 27
+1 2 39
+4 6 50
+5 8 52
+2 5 74
+5 9 98
+Total MST weight: 384
+
+Algorithm: Prim's MST
+MST Edges:
+0 3 13
+3 7 19
+0 5 27
+5 4 12
+4 6 50
+5 8 52
+5 2 74
+2 1 39
+5 9 98
+Total MST weight: 384

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include "../../assignment_01/src/csr.h"
 #include "../src/mst.h"
@@ -55,6 +56,23 @@ int main() {
     printMst(mstPrim, choice);
     auto duration2 = duration_cast<milliseconds>(end1 - start1);
     cout << "Execution Time: " << duration2.count() << " ms";
+
+    string outFile = "../Outputs/output_mst" + testCases[choice] + ".txt";
+    ofstream File(outFile);
+    File << "Algorithm: Kruskal's MST" << endl;
+    File << "MST Edges:" << endl;
+    for (edge entry: mstKruskal.mst) {
+        File << entry.second.first << " " << entry.second.second << " " << entry.first << "\n";
+    }
+    File << "Total MST weight: " << mstKruskal.mstWeight << endl;
+    File << endl;
+    File << "Algorithm: Prim's MST" << endl;
+    File << "MST Edges:" << endl;
+    for (edge entry: mstPrim.mst) {
+        File << entry.second.first << " " << entry.second.second << " " << entry.first << "\n";
+    }
+    File << "Total MST weight: " << mstPrim.mstWeight << endl;
+
 
     return 0;
 }
