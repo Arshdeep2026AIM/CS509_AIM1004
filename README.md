@@ -1,7 +1,7 @@
 # CS509 Individual Assignments Repo
 
 ## Repository Overview
-This repository contains the implementation of Assignment 1 for CS509 Lab Work, focusing on General Matrix Multiplication (GEMM) algorithms in C++.
+This repository contains the implementation of Assignments for CS509 Lab Work in C++.
 
 ## Student Details
 * **Student Name:** Arshdeep Singh

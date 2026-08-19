@@ -28,13 +28,12 @@ int main() {
         file = "bf_" + graphSize[size] + ".txt";
     }
     else if (choice == 2) {
-        vector<string> matrixSize = {"0", "10", "100", "500", "1000", "5000"};
+        vector<string> matrixSize = {"0", "10", "100", "500", "1000"};
         cout << "Enter choice for matrix size:" << "\n";
         cout << "1. 10" << "\n";
         cout << "2. 100" << "\n";
         cout << "3. 500" << "\n";
-        cout << "4. 1000" << "\n";
-        cout << "5. 2000" << "\n" << "->";
+        cout << "4. 1000" << "\n" << "->";
         cin >> size;
         file = "fw_" + matrixSize[size] + ".txt";
     }
