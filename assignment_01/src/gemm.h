@@ -5,8 +5,8 @@
 #include <vector>
 using namespace std;
 
-void simpleMM(const vector<vector<int>>& mat11, const vector<vector<int>>& mat2);
-void blockingMM(const vector<vector<int>>& mat11, const vector<vector<int>>& mat2);
+vector<vector<int>> simpleMM(const vector<vector<int>>& mat1, const vector<vector<int>>& mat2);
+vector<vector<int>> blockingMM(const vector<vector<int>>& mat1, const vector<vector<int>>& mat2);
 
 void printMatrix(const vector<vector<int>>& mat, ostream& os);
 

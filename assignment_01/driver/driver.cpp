@@ -32,20 +32,25 @@ int main() {
     matLoad(testFilePath);
     cout << "\n";
 
+    ofstream file1("output_simple_" + testNumber + ".txt");
+    ofstream file2("output_blocking_" + testNumber + ".txt");
+
     // --- GEMM Simple Execution Time ---
     cout << "Algorithm: GEMM Simple\n";
     auto start = high_resolution_clock::now();
-    simpleMM(matX, matY);
+    vector<vector<int>> result = simpleMM(matX, matY);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
+    printMatrix(result, file1);
     cout << "Execution time: " << duration.count() << " ms\n\n";
 
     // --- GEMM Blocking Execution Time ---
     cout << "Algorithm: GEMM Blocking\n";
     auto start1 = high_resolution_clock::now();
-    blockingMM(matX, matY);
+    vector<vector<int>> resultB = blockingMM(matX, matY);
     auto end1 = high_resolution_clock::now();
     auto duration1 = duration_cast<milliseconds>(end1 - start1);
+    printMatrix(resultB, file2);
     cout << "Execution time: " << duration1.count() << " ms\n\n";
 
     return 0;

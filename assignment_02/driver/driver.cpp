@@ -47,13 +47,16 @@ int main() {
         neg = bellmanFord(csr, dist);
         auto end = high_resolution_clock::now();
         cout << neg << "\n";
-        ofstream File("run.txt");
+        ofstream File("output_" + file);
 
+        if (!neg) {
         int idx = 0;
-        for (int entry: dist) {
-            File << idx << "\t" << entry << "\n";
-            idx++;
+            for (int entry: dist) {
+                File << idx << "\t" << entry << "\n";
+                idx++;
+            }
         }
+        else File << "Negative Cycle detected\n";
         File.close();
         auto duration = duration_cast<milliseconds>(end - start);
         cout << duration.count() << " ms" <<"\n";
@@ -69,13 +72,16 @@ int main() {
         cout << neg << "\n";
         auto duration = duration_cast<milliseconds>(end - start);
         cout << duration.count() << " ms" <<"\n";
-        ofstream File("run2.txt");
-        for (auto& row : adjMat) {
-            for (int entry: row) {
-                File << entry << " ";
+        ofstream File("output_" + file);
+        if (!neg) {
+            for (auto& row : adjMat) {
+                for (long long entry: row) {
+                    File << entry << " ";
+                }
+                File << "\n";
             }
-            File << "\n";
         }
+        else File << "Negative Cycle detected\n";
     }
 
 

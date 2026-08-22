@@ -6,7 +6,7 @@ This repository contains the implementation of Assignments for CS509 Lab Work in
 ## Student Details
 * **Student Name:** Arshdeep Singh
 * **Entry Number:** 2026AIM1004
-* **Assignment Type:** Single (Individual)
+* **Assignment Type:** Individual
 
 ## Language and Environment
 * **Programming Language:** C++

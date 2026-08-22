@@ -26,19 +26,8 @@ struct DSU {
         for (int i = 0; i < n; i++) parent[i] = i;
     }
 
-    int find(int i) {
-        if (parent[i] == i) return i;
-        return parent[i] = find(parent[i]);
-    }
-
-    bool uni(int i, int j) {
-        int rootI = find(i), rootJ = find(j);
-        if (rootI == rootJ) return false;
-        if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;
-        else parent[rootI] = rootJ;
-        if (rank[rootI] == rank[rootJ]) rank[rootI]++;
-        return true;
-    }
+    int find(int i);
+    bool uni(int i, int j);
 };
 
 MST prim(Csr& csr);

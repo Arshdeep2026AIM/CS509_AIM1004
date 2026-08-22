@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <limits>
 #include "../../../CS509_2026AIM1004_2026AIM1007/assignment_01/src/csr.h"
 #include "graphs.h"
 
@@ -8,13 +7,13 @@ using namespace std;
 
 bool bellmanFord(Csr& csr, vector<int>& distances) {
     int vertices = csr.csrGraph.numVertices;
-    distances.assign(vertices, INF);
+    distances.assign(vertices, inf);
     distances[csr.csrGraph.sourceVertex] = 0;
 
     for (int iter = 0; iter < vertices - 1; iter++) {
         bool updated = false;
         for (int vertice = 0; vertice < vertices; vertice++) {
-            if (distances[vertice] == INF) continue;
+            if (distances[vertice] == inf) continue;
 
             for (int i = csr.csrGraph.rowPtr[vertice]; i < csr.csrGraph.rowPtr[vertice + 1]; i++) {
                 int neighbor = csr.csrGraph.colIdx[i];
@@ -31,9 +30,8 @@ bool bellmanFord(Csr& csr, vector<int>& distances) {
 
     
     for (int vertice = 0; vertice < vertices; vertice++) {
-        if (distances[vertice] == INF) continue;
-        int neighbors = csr.csrGraph.rowPtr[vertice + 1] - csr.csrGraph.rowPtr[vertice];
-        for (int i = csr.csrGraph.rowPtr[vertice]; i < csr.csrGraph.rowPtr[vertice] + neighbors; i++) {
+        if (distances[vertice] == inf) continue;
+        for (int i = csr.csrGraph.rowPtr[vertice]; i < csr.csrGraph.rowPtr[vertice + 1]; i++) {
             int neighbor = csr.csrGraph.colIdx[i];
             int weight = csr.csrGraph.values[i];
             
@@ -42,7 +40,6 @@ bool bellmanFord(Csr& csr, vector<int>& distances) {
             }
         }
     }
-
     return false;
 }
 
@@ -56,7 +53,7 @@ bool readFloydWarshall(string filePath, int& vertices, vector<vector<long long>>
         for (int j = 0; j < vertices; j++) {
             string val;
             file >> val;
-            (val == "INF") ? row.push_back(INF) : row.push_back(stoi(val));
+            (val == "INF") ? row.push_back(INF) : row.push_back(stoll(val));
         }
         mat.push_back(row);
     }

@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <fstream>
-#include <limits>
 #include "../../../CS509_2026AIM1004_2026AIM1007/assignment_01/src/csr.h"
 
-const int INF = 1e9;
+const int inf = 1e9;
+const long long INF = 1e18;
 
 bool bellmanFord(Csr& Csr, vector<int>& distances);
 bool readFloydWarshall(string filePath, int& vertices, vector<vector<long long>>& mat);

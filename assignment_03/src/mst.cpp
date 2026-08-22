@@ -6,6 +6,23 @@
 
 using namespace std;
 
+int DSU::find(int i) {
+    if (parent[i] == i) return i;
+    return parent[i] = find(parent[i]);
+}
+
+bool DSU::uni(int i, int j) {
+    int rootI = find(i), rootJ = find(j);
+    if (rootI == rootJ) return false;
+    if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;
+    else if (rank[rootI] > rank[rootJ]) parent[rootJ] = rootI;
+    else {
+        parent[rootJ] = rootI;
+        rank[rootI]++;
+    }
+    return true;
+}
+
 MST prim(Csr& csr) {
     vector<bool> inMst(csr.csrGraph.numVertices, false);
     vector<edge> mstEdges;
@@ -23,7 +40,6 @@ MST prim(Csr& csr) {
         pq.pop();
 
         int weight = top.first;
-        int u = top.second.first;
         int v = top.second.second;
 
         if (inMst[v]) continue;
