@@ -21,6 +21,9 @@ struct CsrGraph {
 class Csr {
 public:
     CsrGraph csrGraph;
+    float damping = 0.0;
+    float tol = 0.0;
+    int maxIter = 0;
 
     void convert(string path);
     void convert(string path, bool isWeighted);

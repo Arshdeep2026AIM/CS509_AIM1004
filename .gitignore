@@ -59,3 +59,7 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Random files
+vertex.cpp
+PR.cpp

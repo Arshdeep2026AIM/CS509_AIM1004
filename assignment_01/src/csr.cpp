@@ -35,7 +35,12 @@ void Csr::convert(string path) {
 
     string extra;
     if (file >> extra){
-        file >> csrGraph.sourceVertex;
+        if (extra == "SOURCE") file >> csrGraph.sourceVertex;
+        else if (extra == "DAMPING") {
+            file >> damping;
+            file >> extra >> tol;
+            file >> extra >> maxIter;
+        }
     }
 
     file.close();
@@ -73,7 +78,12 @@ void Csr::convert(string path, bool isWeighted) {
 
     string extra;
     if (file >> extra){
-        file >> csrGraph.sourceVertex;
+        if (extra == "SOURCE") file >> csrGraph.sourceVertex;
+        else if (extra == "DAMPING") {
+            file >> damping;
+            file >> extra >> tol;
+            file >> extra >> maxIter;
+        }
     }
 
     file.close();
