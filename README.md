@@ -286,8 +286,8 @@ Pre-processes adjacency lists into Compressed Sparse Row (CSR) arrays (`row_ptr`
 | `color_10.txt` | 10 | 37 | 5 | Yes | 0 ms | PASSED |
 | `color_100.txt` | 100 | 590 | 7 | Yes | 0 ms | PASSED |
 | `color_1000.txt` | 1,000 | 5906 | 7 | Yes | 2 ms | PASSED |
-| `color_10000.txt` | 10,000 | 599,333 | 8 | Yes | 8 ms | PASSED |
-| `color_50000.txt` | 50,000 | 300,369 | 8 | Yes | 106 ms | PASSED |
+| `color_10000.txt` | 10,000 | 59,333 | 8 | Yes | 21 ms | PASSED |
+| `color_50000.txt` | 50,000 | 300,369 | 8 | Yes | 107 ms | PASSED |
 
 ---
 
@@ -305,7 +305,7 @@ Pre-processes adjacency lists into Compressed Sparse Row (CSR) arrays (`row_ptr`
 
 ### Complexity
 * **Greedy Vertex Coloring (Welsh-Powell):** 
-  * Time Complexity: $\\mathcal{O}(V \\log V + V + E)$ (Degree computation, vertex sorting, neighbor color scanning).
+  * Time Complexity: $\\mathcal{O}(V^2)$ (Degree computation, vertex sorting, neighbor color scanning).
   * Auxiliary Space: $\\mathcal{O}(V)$ for color vector and degree permutation indices.
 
 * **PageRank Algorithm:** 
