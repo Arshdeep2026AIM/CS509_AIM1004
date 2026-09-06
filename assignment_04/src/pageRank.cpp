@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void pageRank(Csr& csr, vector<double>& pageR) {
+void pageRank(Csr& csr, vector<double>& pageR, int& iters, bool& converged) {
     int N = csr.csrGraph.numVertices;
     float damping = csr.damping;
     float tol = csr.tol;
@@ -16,8 +16,8 @@ void pageRank(Csr& csr, vector<double>& pageR) {
         outDegree[i] = csr.csrGraph.rowPtr[i + 1] - csr.csrGraph.rowPtr[i];
     }
 
-    int iter = csr.maxIter;
-    while(iter > 0) {
+    pageR.assign(N, 1.0/N);
+    while(iters < csr.maxIter && !converged) {
         vector<double> prev = pageR;
 
         float danglingSum = 0.0;
@@ -43,6 +43,7 @@ void pageRank(Csr& csr, vector<double>& pageR) {
         for (int i = 0; i < N; i++) {
             diff += abs(pageR[i] - prev[i]);
         }
-        if (diff < tol) break;
+        if (diff < tol) converged = true;
+        iters++;
     }
 }

@@ -1,12 +1,9 @@
-# Compiler settings
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++14
 
-# Define your target executable name here
 TARGET = driver/driver
 
-# List your source (.cpp) files here
-SRCS = driver/driver.cpp src/graphs.cpp ../assignment_01/src/csr.cpp
+SRCS = driver/driver.cpp src/vertexColor.cpp src/pageRank.cpp ../assignment_01/src/csr.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

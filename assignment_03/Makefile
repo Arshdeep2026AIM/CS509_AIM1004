@@ -24,4 +24,4 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f $(OBJS) $(TARGET) $(TARGET).exe
+	-del /f /q $(subst /,\,$(OBJS) $(TARGET)) 2>NUL

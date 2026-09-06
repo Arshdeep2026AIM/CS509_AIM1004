@@ -6,6 +6,6 @@
 using namespace std;
 
 int vertexColoring(Csr& csr, vector<int>& colors);
-void PageRank(Csr& csr, vector<float> pageR);
+void pageRank(Csr& csr, vector<double>& pageR, int& iters, bool& converged);
 
 #endif

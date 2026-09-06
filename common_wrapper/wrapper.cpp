@@ -24,14 +24,15 @@ int main() {
     cout << "2. Bellman Ford" << endl;
     cout << "3. Floyd Warshall" << endl;
     cout << "4. Kruskal and Prim MST" << endl;
-    cout << "5. exit" << endl;
+    cout << "5. Vertex Coloring and PageRank" << endl;
+    cout << "6. exit" << endl;
 
     int choice;
     cin >> choice;
     choice--;
 
     string algoFile = "assignment_";
-    vector<string> algos = {"01", "02","02", "03"};
+    vector<string> algos = {"01", "02", "02", "03", "04"};
     switch(choice){
         case 0:
             algoFile += algos[choice];
@@ -46,6 +47,9 @@ int main() {
             algoFile += algos[choice];            
             break;
         case 4:
+        algoFile += algos[choice];
+            break;
+        case 5:
             return 0;
         default:
             cout << "Error: Picked an invalid option";

@@ -82,7 +82,7 @@ void generate_pagerank_graph(int num_vertices, int edges_per_node, const std::st
         outfile << "\n";
     }
     outfile << "DAMPING 0.85\n";
-    outfile << "TOLERANCE 0.00001";
+    outfile << "TOLERANCE 0.00001\n";
     outfile << "MAX_ITERATIONS 1000";
 
     outfile.close();
@@ -94,7 +94,7 @@ void generate_pagerank_graph(int num_vertices, int edges_per_node, const std::st
 int main() {
     // Required benchmark graph sizes
     std::vector<int> sizes = {10, 100, 1000, 10000, 50000};
-    int edges_per_new_node = 4; // Average out-degree factor
+    int edges_per_new_node = 8; // Average out-degree factor
 
     for (int V : sizes) {
         std::string filename = "pagerank_" + std::to_string(V) + ".txt";

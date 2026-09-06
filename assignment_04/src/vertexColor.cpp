@@ -25,7 +25,7 @@ int vertexColoring(Csr& csr, vector<int>& colors) {
         return a.second < b.second;
     });
 
-    
+    colors.assign(vert, -1);
     vector<bool> availableColors(vert, true);
     set<int> s = {};
     for (int i = 0; i < vert; i++) {
