@@ -1,0 +1,1 @@
+g++ driver.cpp ..\src\gemm.cpp ..\src\mat.cpp -o driver

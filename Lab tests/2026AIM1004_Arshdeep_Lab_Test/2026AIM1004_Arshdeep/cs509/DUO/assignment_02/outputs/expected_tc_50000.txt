@@ -1,0 +1,2 @@
+Algorithm: Triangle Counting
+Total triangles: 81
